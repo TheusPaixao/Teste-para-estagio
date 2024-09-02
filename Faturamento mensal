@@ -1,0 +1,54 @@
+ def fibonacci(n):
+    a, b = 0, 1
+    while a <= n:
+        if a == n:
+            return True
+        a, b = b, a + b
+    return False
+
+num = 21 
+if fibonacci(num):
+    print(f"O número {num} pertence à sequência de Fibonacci.")
+else:
+    print(f"O número {num} não pertence à sequência de Fibonacci.")
+
+import json
+
+with open('faturamento.json') as f:
+    dados = json.load(f)
+
+faturamento = dados['faturamento_diario']
+faturamento_filtrado = [valor for valor in faturamento if valor > 0]
+
+menor = min(faturamento_filtrado)
+maior = max(faturamento_filtrado)
+media = sum(faturamento_filtrado) / len(faturamento_filtrado)
+dias_acima_da_media = len([valor for valor in faturamento_filtrado if valor > media])
+
+print(f"Menor faturamento: {menor}")
+print(f"Maior faturamento: {maior}")
+print(f"Dias com faturamento acima da média: {dias_acima_da_media}")
+
+faturamento = {
+    'SP': 67836.43,
+    'RJ': 36678.66,
+    'MG': 29229.88,
+    'ES': 27165.48,
+    'Outros': 19849.53
+}
+
+total = sum(faturamento.values())
+
+percentuais = {estado: (valor / total) * 100 for estado, valor in faturamento.items()}
+
+for estado, percentual in percentuais.items():
+    print(f"{estado}: {percentual:.2f}%")
+
+def inverter_string(s):
+    invertida = ''
+    for caractere in s:
+        invertida = caractere + invertida
+    return invertida
+
+string = "exemplo"
+print(inverter_string(string))
